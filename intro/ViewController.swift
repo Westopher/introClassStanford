@@ -25,6 +25,7 @@ class ViewController: UIViewController {
             userTyping = true
         }
     }
+    3
     
     
     var displayValue: Double {
