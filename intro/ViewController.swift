@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     
     var userTyping = false
     
-    
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userTyping {
@@ -25,8 +24,6 @@ class ViewController: UIViewController {
             userTyping = true
         }
     }
-    3
-    
     
     var displayValue: Double {
         
@@ -39,20 +36,20 @@ class ViewController: UIViewController {
         
     }
     
+    private var brain = CalculatorBrain()
+
+    
     @IBAction func performOperation(_ sender: UIButton) {
-        userTyping = false
-        if let mathematicalSymbol = sender.currentTitle {
-            
-            switch mathematicalSymbol {
-            case "∏":
-                displayValue = Double.pi
-            case "√":
-                displayValue = sqrt(displayValue)
-            default: break
-                
-            }
-            
+        if userTyping {
+            brain.setOperand(displayValue)
+            userTyping = false
         }
         
+        if let mathematicalSymbol = sender.currentTitle {
+            brain.performOperation(mathematicalSymbol)
+            }
+        if let result = brain.result {
+            displayValue = result
+        }
     }
 }
