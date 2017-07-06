@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     var userTyping = false
     
+    /*gets the number from the button (for numbers) and puts it into the result label*/
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userTyping {
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
         
     }
     
+    //sets the brain variable to the struct CalcBr() in the model
     private var brain = CalculatorBrain()
 
     
