@@ -12,19 +12,24 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
     
-    var userTyping = false
+    var userIsInTheMiddleOfTyping = false
     
     /*gets the number from the button (for numbers) and puts it into the result label*/
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
-        if userTyping {
-            let textCurrentlyInDisplay = display.text
-            display.text = textCurrentlyInDisplay! + digit
+        
+        
+        if userIsInTheMiddleOfTyping {
+            let textCurrentlyInDisplay = display.text!
+            if "." != digit || !textCurrentlyInDisplay.contains(".") {
+                display.text = textCurrentlyInDisplay + digit
+            }
         } else {
-            display.text = digit
-            userTyping = true
+            display.text = "." == digit ? "0." : digit
+            userIsInTheMiddleOfTyping = true
         }
     }
+    
     
     var displayValue: Double {
         
@@ -39,12 +44,12 @@ class ViewController: UIViewController {
     
     //sets the brain variable to the struct CalcBr() in the model
     private var brain = CalculatorBrain()
-
     
+
     @IBAction func performOperation(_ sender: UIButton) {
-        if userTyping {
+        if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)
-            userTyping = false
+            userIsInTheMiddleOfTyping = false
         }
         
         if let mathematicalSymbol = sender.currentTitle {

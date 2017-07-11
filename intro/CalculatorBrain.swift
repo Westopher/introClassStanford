@@ -57,6 +57,14 @@ struct CalculatorBrain {
         }
         
     }
+//    
+//    var resultIsPending: Bool
+//    
+//    var description: String
+    
+    
+    
+    
     
     private mutating func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil {
